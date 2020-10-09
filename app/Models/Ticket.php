@@ -14,4 +14,31 @@ class Ticket extends Model
     protected $fillable = [
         'flightNumber', 'arrival_airport_id','departure_airport_id', 'transporter_id','departureDateTime', 'arrivalDateTime','duration'
     ];
+
+    /**
+     * Arrival Airport
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function arrivalAirport(){
+       return $this->belongsTo(Airport::class, 'arrival_airport_id');
+    }
+
+    /**
+     * Departure Airport
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function departureAirport(){
+       return $this->belongsTo(Airport::class, 'departure_airport_id');
+    }
+
+    /**
+     * Departure Airport
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function transporter(){
+       return $this->belongsTo(Transporter::class);
+    }
 }
