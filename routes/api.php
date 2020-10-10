@@ -13,6 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/search', function (Request $request) {
-    return $request->searchQuery;
-});
+Route::middleware('auth:api')->get('/search', 'Api\SearchController@searchTicket');

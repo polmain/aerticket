@@ -71,7 +71,9 @@
                     console.log(resp);
                 },
                 error:  function(xhr, str){
-                    console.log(xhr);
+                    Object.entries(xhr.responseJSON.errors).forEach(function(e){
+                        console.log(e[1][0]);
+                    })
                 }
             });
             return false;
