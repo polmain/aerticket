@@ -51,16 +51,30 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $.ajax({
-            method: "GET",
-            url: "{{url('/api/user')}}",
-            success: function(resp)
-            {
-                console.log(resp);
-            },
-            error:  function(xhr, str){
-                console.log(xhr);
-            }
+
+        $('#search_form').submit(function (e){
+            e.preventDefault();
+            var query = {
+                "searchQuery": {
+                    "departureAirport": $('#departureAirport').val(),
+                    "arrivalAirport": $('#arrivalAirport').val(),
+                    "departureDate": $('#departureDate').val()
+                }
+            };
+
+            $.ajax({
+                method: "GET",
+                url: "{{url('/api/search')}}",
+                data: query,
+                success: function(resp)
+                {
+                    console.log(resp);
+                },
+                error:  function(xhr, str){
+                    console.log(xhr);
+                }
+            });
+            return false;
         });
     </script>
 @endpush
