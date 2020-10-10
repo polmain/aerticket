@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
@@ -41,4 +42,24 @@ class Ticket extends Model
     public function transporter(){
        return $this->belongsTo(Transporter::class);
     }
+
+    /**
+     * Scope a query to only include tickets for specified airports and date.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAirportDate($query,$departureAirport,$arrivalAirport,$departureDateTime)
+    {
+        return $query
+            ->whereHas('departureAirport',function ($airports) use ($departureAirport){
+                $airports->where('name',$departureAirport);
+            })
+            ->whereHas('arrivalAirport',function ($airports) use ($arrivalAirport){
+                $airports->where('name',$arrivalAirport);
+            })
+            ->where('departureDateTime','>=', $departureDateTime)
+            ->where('departureDateTime','<', Carbon::parse($departureDateTime)->addDay());
+    }
 }
+

@@ -17,4 +17,11 @@ return [
     'departure_date'    => 'Departure Date',
     'search_btn'        => 'Search',
 
+    /* Result table headers */
+    'transporter'       => 'Transporter',
+    'flight_number'     => 'Flight number',
+    'departure_time'    => 'Departure time',
+    'arrival_time'      => 'Arrival time',
+    'duration'          => 'Duration',
+
 ];

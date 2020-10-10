@@ -42,7 +42,6 @@
                 <div class="card-header">@lang('home.header_result')</div>
 
                 <div class="card-body" id="result">
-
                 </div>
             </div>
         </div>
@@ -78,7 +77,31 @@
                 data: query,
                 success: function(resp)
                 {
-                    console.log(resp);
+                    var table = $('#result').append(
+                        '<table class="table">\n' +
+                        '  <thead>\n' +
+                        '    <tr>\n' +
+                        '      <th>@lang('home.transporter')</th>\n' +
+                        '      <th>@lang('home.flight_number')</th>\n' +
+                        '      <th>@lang('home.departure_time')</th>\n' +
+                        '      <th>@lang('home.arrival_time')</th>\n' +
+                        '      <th>@lang('home.duration')</th>\n' +
+                        '    </tr>\n' +
+                        '  </thead>\n' +
+                        '  <tbody></tbody>\n' +
+                        '</table>'
+                    );
+                    resp.searchResults.forEach(function (e){
+                        $(table).find('tbody').append(
+                            '<tr>\n' +
+                            '   <td>'+e.transporter.name+'</td>\n' +
+                            '   <td>'+e.flightNumber+'</td>\n' +
+                            '   <td>'+e.departureDateTime+'</td>\n' +
+                            '   <td>'+e.arrivalDateTime+'</td>\n' +
+                            '   <td>'+e.duration+'</td>\n' +
+                            '</tr>'
+                        );
+                    });
                 },
                 error:  function(xhr, str){
                     Object.entries(xhr.responseJSON.errors).forEach(function(e){

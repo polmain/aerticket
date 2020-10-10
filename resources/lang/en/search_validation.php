@@ -16,5 +16,6 @@ return [
     'departure_airport' => 'Wrong Departure airport.',
     'arrival_airport' => 'Wrong Arrival airport.',
     'departure_date' => 'Wrong Departure date.',
+    'not_found' => 'Tickets not found',
 
 ];
