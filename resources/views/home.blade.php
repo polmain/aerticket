@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">@lang('home.header')</div>
+            <div class="card mb-4">
+                <div class="card-header">@lang('home.search_header')</div>
 
                 <div class="card-body">
                     <form id="search_form">
@@ -37,6 +37,14 @@
                     </form>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header">@lang('home.header_result')</div>
+
+                <div class="card-body" id="result">
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -62,6 +70,8 @@
                 }
             };
 
+            $('#result').html('');
+
             $.ajax({
                 method: "GET",
                 url: "{{url('/api/search')}}",
@@ -72,7 +82,7 @@
                 },
                 error:  function(xhr, str){
                     Object.entries(xhr.responseJSON.errors).forEach(function(e){
-                        console.log(e[1][0]);
+                        $('#result').append('<p class="text-danger text-bold">'+e[1][0]+'</p>');
                     })
                 }
             });

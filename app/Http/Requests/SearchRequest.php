@@ -40,12 +40,12 @@ class SearchRequest extends FormRequest
     public function messages()
     {
         return [
-            'searchQuery.departureAirport.required' => trans('search_validation.airport'),
-            'searchQuery.departureAirport.max' => trans('search_validation.airport'),
-            'searchQuery.departureAirport.exists' => trans('search_validation.airport'),
-            'searchQuery.arrivalAirport.required' => trans('search_validation.airport'),
-            'searchQuery.arrivalAirport.max' => trans('search_validation.airport'),
-            'searchQuery.arrivalAirport.exists' => trans('search_validation.airport'),
+            'searchQuery.departureAirport.required' => trans('search_validation.departure_airport'),
+            'searchQuery.departureAirport.max' => trans('search_validation.departure_airport'),
+            'searchQuery.departureAirport.exists' => trans('search_validation.departure_airport'),
+            'searchQuery.arrivalAirport.required' => trans('search_validation.arrival_airport'),
+            'searchQuery.arrivalAirport.max' => trans('search_validation.arrival_airport'),
+            'searchQuery.arrivalAirport.exists' => trans('search_validation.arrival_airport'),
             'searchQuery.departureDate.required'  => trans('search_validation.departure_date'),
             'searchQuery.departureDate.date'  => trans('search_validation.departure_date'),
         ];
